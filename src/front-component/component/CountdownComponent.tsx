@@ -1,42 +1,42 @@
-import React, { useContext, useState } from 'react';
-import ReactDOM from 'react-dom';
-import Quiz from '../view/Quiz';
+import React, { useState } from 'react';
 import './../../css/App.css';
-
 
 interface CountdownComponentProps {
   nb: number;
   onDone: () => void;
 }
 
-const timePerQuesionInS = 5;
-let currentQuestionNbr = 0;
+const timePerQuesionInS = 30;
 
 export const CountdownComponent: React.FC<CountdownComponentProps> = (props) => {
-  let [state, setState] = useState<CountdownComponentProps>({
+  let [state] = useState<CountdownComponentProps>({
     nb: props.nb,
     onDone: props.onDone,
   });
 
-  currentQuestionNbr = props.nb;
-  
   const [counter, setCounter] = React.useState(timePerQuesionInS);
 
-  const tick = () => {
-    setCounter(counter - 1);
-    if (counter == 0) {
-      props.onDone();
-      setCounter(timePerQuesionInS);
-    }
-  };
+  let resetTimer = () => {
+    setCounter(timePerQuesionInS);
+  }
 
   React.useEffect(() => {
-    counter >= 0 && setTimeout(() => tick(), 1000);
+    if (counter <= 0) {
+      resetTimer();
+      state.onDone();
+    } else {
+      const timer = setTimeout( () => { setCounter((counter) => counter - 1) }, 1000);
+      return () => clearTimeout(timer);
+    }
   }, [counter]);
 
+  React.useEffect(() => {
+    resetTimer();
+  }, [props.nb]);
+
   return (
-    <div className="App">
-      <div>Countdown: {counter}</div>
+    <div className="App-countdown">
+      <div >{counter}s</div>
     </div>
   );
 }

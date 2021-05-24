@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import CSS from 'csstype';
 import './../../css/App.css';
 
 interface QuizMenuProps {
@@ -6,19 +7,23 @@ interface QuizMenuProps {
 }
 
 export const QuizMenu: React.FC<QuizMenuProps> = (props) => {
-
-  let [state, setState] = useState<QuizMenuProps>({
+  let [state] = useState<QuizMenuProps>({
     onStateChanged: props.onStateChanged
   });
 
+  const introTextStyle : CSS.Properties = {
+    color: "#FBD872",
+    fontSize: "calc(50px + 2vmin)"
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Quiz eco tree</p>
-        <button onClick={() => state.onStateChanged('IN_QUIZ')}>
-          Start
+      <div style={introTextStyle} className="App-menu-body">
+        <p>QUIZ ECO TREE</p>
+        <button className="App-menu-button" onClick={() => state.onStateChanged('IN_QUIZ')}>
+          START
         </button>
-      </header> 
+      </div> 
     </div>
   );
 }

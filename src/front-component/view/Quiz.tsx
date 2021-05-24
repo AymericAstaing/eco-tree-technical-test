@@ -1,5 +1,4 @@
-import { stat } from 'fs';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import './../../css/App.css';
 import CountdownComponent from './../component/CountdownComponent'
 import QuestionComponent from './../component/QuestionComponent'
@@ -11,28 +10,39 @@ interface QuizRunningProps {
 }
 
 export const Quiz: React.FC<QuizRunningProps> = (props) => {
-
   let [state, setState] = useState<QuizRunningProps>({
     onStateChanged: props.onStateChanged,
     totalQuestionNbr: props.totalQuestionNbr,
-    currentQuestionIndex: props.currentQuestionIndex
+    currentQuestionIndex: props.currentQuestionIndex,
   });
-
-  let goToNextQuestion = () => {
-    console.log("OK");
-    state.currentQuestionIndex++;
-    setState(state);
-  };
 
   {/* Function trigered on countdown finished */}
   let onDone = () => {
-    return goToNextQuestion();
+    state.currentQuestionIndex = state.currentQuestionIndex + 1;
+    setState({onStateChanged: props.onStateChanged, totalQuestionNbr: props.totalQuestionNbr, currentQuestionIndex: state.currentQuestionIndex});
+    console.log(state.currentQuestionIndex);
   };
+
+  {/* Function trigered on answer card clicked */}
+  let onCardAnswerClicked = (id: number) => {
+    if (state.currentQuestionIndex === state.totalQuestionNbr)
+      state.onStateChanged('MENU')
+    else {
+      state.currentQuestionIndex = state.currentQuestionIndex + 1;
+      setState({onStateChanged: props.onStateChanged, totalQuestionNbr: props.totalQuestionNbr, currentQuestionIndex: state.currentQuestionIndex});
+    }
+  }
 
   return (
     <div className="Quiz">
-      <CountdownComponent nb={state.currentQuestionIndex} onDone={onDone}/>
-      <QuestionComponent/>  
+      <header className="App-header">
+        <button className="App-backbutton" onClick={() => state.onStateChanged('MENU')}>
+          MENU
+        </button>
+        <p className="App-questionCount">{state.currentQuestionIndex}/{state.totalQuestionNbr}</p>
+        <CountdownComponent nb={state.currentQuestionIndex} onDone={onDone} />
+      </header> 
+      <QuestionComponent onCardAnswerClicked={onCardAnswerClicked}/>  
     </div>
   );
 }

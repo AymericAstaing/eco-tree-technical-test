@@ -2,8 +2,30 @@
   text-align: center;
 }
 
+.App-menu-button {
+  color: #5A4522;
+  border-color: transparent;
+  background-color: #D19000;
+  font-size: calc(5px + 2vmin);
+  width: 15vw;
+  height: 7vh;
+  border-radius: 10px; 
+}
+
 .App-header {
   background-color: #282c34;
+  min-height: 10vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+  
+.App-menu-body {
+  background-color: #26D07C;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,4 +33,68 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-question-body {
+  background-color: #ffffff;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-question-card-area {
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  background-color: #ffffff;
+  min-height: 40vh;
+  row-gap: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  
+}
+
+.App-question-card {
+  background-color: #282c34;
+  min-height: 10vh;
+  min-width: 50vw;
+  max-width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  border-radius: 10px;
+}
+
+.App-question-card:hover {
+  background-color: rgb(95, 95, 95);
+}
+
+.App-question-card:active {
+  background-color: rgb(115, 255, 0);
+}
+
+.App-countdown {
+  margin-right: 3%;
+  align-self: center;
+}
+
+.App-backbutton {
+  width: 7vw;
+  height: 7vh;
+  margin-left: 1%;
+  align-self: center;
+}
+
+.App-questionCount {
+  margin-left: -2%;
+  text-align: justify;
 }
