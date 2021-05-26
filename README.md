@@ -1,3 +1,13 @@
+Project Goal: Create a Countdown component in TypeScript (with React) which is supposed to be integrated inside a quiz website. Design also the correponsponding UI/UX in order to show how the countdown works.
+
+Mandatories:
+
+- Take as parameters (props) the current question number (called “nb”, an integer) and an onDone function (which returns void)
+- Restart the countdown from 30 whenever the question number (nb) changes
+- Calls the onDone function if the timer reaches 0 (the parent component manages the function, and will change the question number or hide the component)
+- Show the time remaining in seconds (as text) e.g. “3s
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
