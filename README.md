@@ -1,4 +1,4 @@
-Project Goal: Create a Countdown component in TypeScript (with React) which is supposed to be integrated inside a quiz website. Design also the correponsponding UI/UX in order to show how the countdown works.
+Project Goal: Create a **Countdown component** in TypeScript (with React) which is supposed to be integrated inside a quiz website. Design also the correponsponding UI/UX in order to show how the countdown works.
 
 Mandatories:
 
